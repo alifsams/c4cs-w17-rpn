@@ -7,23 +7,21 @@ operators = {
 	'-': operator.sub,
 	'*': operator.mul,
 	'/': operator.truediv,
-	'^': operator.pow,
 }
 
 def calculate(arg):
 	stack = list()
 	for operand in arg.split():
 		try:
-			operand = int(operand)
+			operand = float(operand)
 			stack.append(operand)
-		except ValueError:
+		except:
 			arg2 = stack.pop()
 			arg1 = stack.pop()
-			result = function(arg1, arg2)
+			operator_fn = operators[operand]
+			result = operator_fn(arg1, arg2)			
+
 			stack.append(result)
-		print(stack)
-	if len(stack) != 1:
-		raise TypeError("Too many parameters")
 	return stack.pop()
 
 def main():

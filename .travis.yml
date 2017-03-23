@@ -6,4 +6,10 @@ python:
 install:
  - pip install coveralls
 
-script: pytest 
+script:
+ pytest
+ coverage run --source=travis-ci setup.py test
+
+after_success:
+ coveralls
+ 
